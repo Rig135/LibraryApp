@@ -2,14 +2,70 @@
     padding: 0;
     margin: 0;
     height: 100%;
+    font-family: "Bebas Neue", "Segoe UI Emoji", "Noto Color Emoji", "Apple Color Emoji", sans-serif;
+    font-weight: 400;
 }
 
 .header {
     width: 100vw;
-    height: 15%;
-    background-color: rgb(84, 194, 231);
+    height: 20%;
+    background-color: black;
 
     display: flex;
-    justify-content: center;
     align-items: center;
+
+
+    color: white;
+    font-size: 30px;
+    letter-spacing: 1.5;
+}
+
+.header h1 {
+    padding-top: 25px;
+    margin-left: 50px;
+}
+
+#menu svg {
+    fill: white;
+    width: 50px;
+    height: 50px;
+    padding-top: 20px;
+    padding-left: 15px;
+}
+
+.main {
+    border-top-left-radius: 50px;
+    border-top-right-radius: 50px;
+    margin-top: -35px;
+    z-index: 1;
+    background-color: white;
+    padding: 50px 50px 0 50px;
+
+    display: flex;
+    flex-direction: column;
+}
+
+#finished {
+    margin: 0px 0px 20px 40px;
+    /* height: 60px; */
+}
+
+.finished-cardArea,
+.toRead-cardArea {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+
+    gap: 20px;
+    margin-bottom: 30px;
+}
+
+.card {
+    width: 200px;
+    height: 250px;
+    background-color: bisque;
+}
+
+#yetToRead {
+    margin: 30px 0px 20px 40px;
+    /* height: 60px; */
 }
