@@ -23,26 +23,61 @@
         <h1>Library <span style="color:bisque">App</span> 📚</h1>
     </div>
 
+
+
+
     <div class="main">
         <h1 id="finished">📕 Finished</h1>
         <div class="finished-cardArea">
-            <div class="card">
-                <!-- <div class="cardHeading"></div> -->
-            </div>
-            <div class="card">jj</div>
-            <div class="card">jj</div>
-            <button id="addFinishedBook"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+            <button id="addBook"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
                     <title>plus</title>
                     <path d="M19,13H13V19H11V13H5V11H11V5H13V11H19V13Z" />
                 </svg></button>
+            <!-- <div class="card">
+                 <div class="cardHeading"></div> 
+            </div> -->
+            <!-- <div class="card"></div>
+            <div class="card"></div> -->
+
 
         </div>
+
+        <dialog>
+            <button id="close">Close</button>
+            <form method="dialog" id="formDialog">
+                <p>
+                    <label for="title">Enter the Title of the book: </label>
+                    <input type="text" id="title" required>
+                </p>
+                <p>
+                    <label for="author">Enter the name of the Author: </label>
+                    <input type="text" id="author" required>
+                </p>
+                <p>
+                    <label for="pages">Enter number of Pages: </label>
+                    <input type="number" required id="pages">
+                </p>
+                <p>
+                    <label for="read">Have you read the book? </label>
+                    <input type="checkbox" id="read">
+                </p>
+                <p>
+                    <button type="submit">Add Book</button>
+                </p>
+
+            </form>
+        </dialog>
+
+
+
         <h1 id="yetToRead">📖 Yet to Read</h1>
         <div class="toRead-cardArea">
-            <div class="card">jj</div>
-            <div class="card">jj</div>
-            <div class="card">jj</div>
-            <div class="card">jj</div>
+            <!-- <button id="addBook"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+                    <title>plus</title>
+                    <path d="M19,13H13V19H11V13H5V11H11V5H13V11H19V13Z" />
+                </svg></button> -->
+            <!-- <div class="card"></div> -->
+
 
         </div>
     </div>
