@@ -1,7 +1,9 @@
 const dialog = document.querySelector('dialog');
 
-
+//Array of Objects to store books data
 const Library = [];
+
+
 const addBook = document.querySelector('#addBook');
 const finishedBooks = document.querySelectorAll('.finished-cardArea > div')
 const finishedArea = document.querySelector('.finished-cardArea');
@@ -18,34 +20,71 @@ const author = document.querySelector('#author');
 const pages = document.querySelector('#pages');
 const read = document.querySelector('#read');
 
-
-// let finIndex = 0;
-// let unFinIndex = 0;
-
-
-
+Books.prototype.toggle = function () {
+    this.read = !this.read;
+}
 
 function addBooksToLibrary(title, author, pages, read) {
     let id = crypto.randomUUID();
     const newBook = new Books(id, title, author, pages, read);
 
     Library.push(newBook);
-    createCard(title, author, pages, read);
+    createCard(id, title, author, pages, read);
 }
 
 //Function to Create new Cards
-function createCard(title, author, pages, read) {
+function createCard(id, title, author, pages, read) {
 
     const div = document.createElement('div');
     div.classList.add("card");
+    div.setAttribute('data-id', id);
 
 
-    let str = `${title}  <br>`;
-    str += `Author:-    ${author}  <br>`;
-    str += `Pages:-   ${pages}  <br>`;
-    str += `Read: ${read ? "✅" : "❌"}`
+    //card delete button
+    const delButton = document.createElement('button');
+    delButton.innerHTML =
+        '<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><title>trash-can-outline</title><path d="M9,3V4H4V6H5V19A2,2 0 0,0 7,21H17A2,2 0 0,0 19,19V6H20V4H15V3H9M7,6H17V19H7V6M9,8V17H11V8H9M13,8V17H15V8H13Z" /></svg>';
 
-    div.innerHTML = str;
+    delButton.classList.add('deleteButton');
+    div.appendChild(delButton);
+
+    delButton.addEventListener('click', () => {
+        div.remove();
+        for (let i = 0; i < Library.length; i++) {
+            if (Library[i].id == div.dataset.id) {
+                Library.splice(i, 1);
+                break;
+            }
+        }
+    })
+
+    //Book Finished Button
+    const completed = document.createElement('button');
+    completed.innerText = 'Completed 🎉';
+    completed.classList.add('completedButton');
+    if (read === false) {
+        div.appendChild(completed);
+    }
+
+    completed.addEventListener('click', () => {
+        const book = Library.find(b => b.id === div.dataset.id);
+        if (book) {
+            book.toggle();
+            div.remove();
+            createCard(book.id, book.title, book.author, book.pages, book.read);
+        }
+    })
+
+
+    const cardInfo = `
+        <h2>${title}</h2>
+        <p>Author: ${author}</p>
+        <p>Pages: ${pages}</p>
+        <p>Read: ${read ? "✅" : "❌"}</p>
+    `;
+
+
+    div.insertAdjacentHTML('afterbegin', cardInfo);
 
     if (read) {
         finishedArea.appendChild(div);
@@ -62,12 +101,6 @@ addBook.addEventListener('click', () => {
 })
 
 
-
-// for (let i = 0; i < 2; i++) {
-//     addBook[i].addEventListener('click', () => {
-//         dialog.showModal();
-//     })
-// }
 
 closeButton.addEventListener('click', () => {
     title.value = "";
@@ -101,13 +134,11 @@ function Books(id, title, author, pages, read) {
 }
 
 
-
-
-
-addBooksToLibrary('babaBlack Sheep', 'mememe', 20, true);
+//Sample Books
+addBooksToLibrary('The 48 Laws of Power', 'Robert Greene', 480, true);
 addBooksToLibrary('Atomic Habits', 'James Clear', 390, true);
-addBooksToLibrary('The Subtle Art of not giving a fuck', 'idkman', 223, true);
-addBooksToLibrary('Programmming Interviews', 'mark leu', 500, false);
+addBooksToLibrary('The Subtle Art of not giving a fuck', 'Mark Manson', 212, true);
+addBooksToLibrary('The Hobbit', 'J.R.R Tolkien', 400, false);
 
 
 console.log(Library);

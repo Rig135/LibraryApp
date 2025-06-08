@@ -12,8 +12,9 @@
     height: 20%;
     background-color: black;
 
-    display: flex;
-    align-items: center;
+
+    display: grid;
+    grid-template-columns: 0.5fr 6fr 1fr;
 
 
     color: white;
@@ -22,16 +23,23 @@
 }
 
 .header h1 {
-    padding-top: 25px;
-    margin-left: 50px;
+    padding-top: 13px;
 }
 
-#menu svg {
+
+
+#menu svg,
+#github svg {
     fill: white;
     width: 50px;
     height: 50px;
     padding-top: 20px;
     padding-left: 15px;
+}
+
+#github {
+    align-self: center;
+    justify-self: center;
 }
 
 .main {
@@ -48,7 +56,6 @@
 
 #finished {
     margin: 0px 0px 20px 40px;
-    /* height: 60px; */
 }
 
 .finished-cardArea,
@@ -61,12 +68,26 @@
 }
 
 .card {
-    width: 200px;
-    height: 250px;
+    max-width: 200px;
+    max-height: 250px;
     background-color: rgb(255, 249, 241);
     border-radius: 15px;
     border: 2px solid black;
     transition: transform 0.5s;
+
+    box-sizing: border-box;
+    padding: 10px;
+
+}
+
+.card h2 {
+    margin-top: 5px;
+    height: 60px;
+}
+
+.card p,
+.card button {
+    height: auto;
 
 }
 
@@ -75,13 +96,6 @@
     box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
 }
 
-.cardHeading {
-    background-color: yellow;
-    height: 50px;
-    display: flex;
-    align-items: center;
-    padding-left: 10px;
-}
 
 #yetToRead {
     margin: 30px 0px 20px 40px;
@@ -132,8 +146,29 @@ dialog::backdrop {
 dialog button,
 dialog input {
     display: inline-block;
-    height: 24px;
+    height: 28px;
     font-size: 20px;
+}
+
+dialog button {
+    padding: 3px 10px 3px 10px;
+}
+
+#close {
+    margin-left: 80%;
+}
+
+dialog input[type=checkbox] {
+    width: 20px;
+    height: 20px;
+    margin-left: 10px;
+    margin-top: 10px;
+}
+
+#dialogButton {
+    margin-left: 40%;
+    width: 100px;
+    height: 35px;
 }
 
 dialog p {
@@ -141,4 +176,35 @@ dialog p {
     width: 100%;
     height: 40px;
     margin-bottom: 20px;
+}
+
+.deleteButton svg {
+    height: 20px;
+    width: 20px;
+    fill: white;
+}
+
+.deleteButton {
+    background-color: #ac2c20;
+    border: none;
+
+    padding: 4px 6px;
+    margin-left: 75%;
+    margin-top: 40%;
+    border-radius: 5px;
+    transition: transform 0.5s;
+}
+
+.deleteButton:hover {
+    transform: scale(1.05);
+}
+
+.completedButton {
+    background-color: white;
+    padding: 6px 8px;
+    margin-left: 15%;
+    transform: translateY(-100%);
+    border-radius: 5px;
+    font-size: 15px;
+    transition: transform 0.5s;
 }
